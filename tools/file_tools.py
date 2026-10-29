@@ -55,6 +55,6 @@ class ReadFileTool(BaseTool):
             return content
         except UnicodeDecodeError:
             return f"Error:file {target} is not a valid utf-8 text file"
-        except OSError:
+        except OSError as e:
             return "Error:read file failed due to os:{e}"
         
