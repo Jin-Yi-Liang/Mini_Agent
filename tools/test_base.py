@@ -1,4 +1,4 @@
-from base import BaseTool
+from .base import BaseTool
 class TestReadTool(BaseTool):
     @property
     def name(self)->str:
@@ -13,17 +13,26 @@ class TestReadTool(BaseTool):
         return {
             "type":"object",
             "properties":{
-                "type":"string",
-                "description":"the file path that need to read"
+                "path":{
+                    "type":"string",
+                    "description":"the file path that need to read"
+                }
             },
             "required":["path"],
-            "additionProperties":False
+            "additionalProperties":False
         }
 
     def execute(self,arguments):
-        return "use test tool and arguments is ",arguments
+        return f"use test tool and arguments is {arguments}"
 
-test=TestReadTool()
 
-schema=test.to_schema()
-print(schema)
+
+
+def main():
+    test=TestReadTool()
+    schema=test.to_schema()
+    print(schema)
+
+
+if __name__=="__main__":
+    main()
