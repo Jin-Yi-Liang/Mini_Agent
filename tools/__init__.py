@@ -1,1 +1,1 @@
-from tools.base import BaseTool
+print("tool package initialized!")

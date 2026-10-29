@@ -18,7 +18,7 @@ class BaseTool(ABC):
         pass
 
     @abstractmethod
-    def execute(self,arguments):
+    def execute(self,arguments:dict):
         pass
 
     def to_schema(self)->dict:
