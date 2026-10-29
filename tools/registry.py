@@ -4,7 +4,7 @@ class ToolRegistry:
     def __init__(self):
         self.tools:dict[str,BaseTool]={}
 
-    def regist(self,tool:BaseTool)->None:   
+    def register(self,tool:BaseTool)->None:   
         if tool.name in self.tools:
             raise ValueError(
                 f"Tool {tool.name} already registed"
@@ -18,10 +18,10 @@ class ToolRegistry:
             )
         return self.tools[name]
 
-    def get_schema(self)->list[dict]:
+    def get_schemas(self)->list[dict]:
         schemas=[]
         for tool in self.tools.values():
-            schemas.append(tool.to_schema)
+            schemas.append(tool.to_schema())
         return schemas
 
     def execute(self,tool_name:str,arguments:dict)->str:
