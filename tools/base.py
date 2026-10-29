@@ -20,3 +20,13 @@ class BaseTool(ABC):
     @abstractmethod
     def execute(self,arguments):
         pass
+
+    def to_schema(self)->dict:
+        return {
+            "type":"function",
+            "function":{
+                "name":self.name,
+                "description":self.description,
+                "parameters":self.parameters
+            }
+        }

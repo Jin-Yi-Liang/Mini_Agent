@@ -2,11 +2,11 @@ from base import BaseTool
 class TestReadTool(BaseTool):
     @property
     def name(self)->str:
-        return "test tool"
+        return "test_read_tool"
 
     @property
     def description(self):
-        return "test tool:when you need to read a file use this tool"
+        return "it is just a test tool.when you need to read a file, use this tool"
 
     @property
     def parameters(self)->dict:
@@ -24,7 +24,6 @@ class TestReadTool(BaseTool):
         return "use test tool and arguments is ",arguments
 
 test=TestReadTool()
-print(test.name)
-print(test.description)
-print(test.parameters)
-print(test.execute({"path":"jjj"}))
+
+schema=test.to_schema()
+print(schema)
