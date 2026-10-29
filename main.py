@@ -103,8 +103,6 @@ while True:
     # ==================================================
 
     if model_message.tool_calls:
-        print("\n[Agent] Model requested tool calls.")
-
         # 5.1 保存 Assistant 的完整 Tool Call 消息到 context 中
         tool_calls_data = [
             call.model_dump(exclude_none=True)
@@ -179,6 +177,7 @@ while True:
         final_response = client.chat.completions.create(
             model=MODEL_NAME,
             messages=messages,
+            tool_choice="none",
             extra_body={
                 "thinking": {
                     "type": "disabled"
@@ -187,9 +186,7 @@ while True:
         )
 
         final_message = final_response.choices[0].message
-
         final_content = final_message.content or ""
-
         print("\nAssistant:", final_content)
 
         # 保存最终回答
@@ -225,3 +222,4 @@ while True:
         )
 
 print("\nAgent stopped.")
+CONTEXT_FILE.unlink()
