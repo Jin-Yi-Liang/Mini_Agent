@@ -51,7 +51,7 @@ class ReactAgent:
             print(f"finish reason:{finish_reason}")
             if(finish_reason=="length"):
                 print("model reach generation limit")
-                break
+                return None
     
             # tool call
             if model_message.tool_calls:
@@ -99,6 +99,7 @@ class ReactAgent:
                     "role":"assistant",
                     "content":final_content
                 })
-                break
+                return final_content
         else:
             print(f"maximum steps reached:{i}")
+            return None
